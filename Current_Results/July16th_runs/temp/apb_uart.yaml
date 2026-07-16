@@ -1,0 +1,5 @@
+ip_type: apb_uart
+name: apb_uart
+parameters:
+  fifo_depth: 16
+  default_div: 0

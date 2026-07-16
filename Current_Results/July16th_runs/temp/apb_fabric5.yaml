@@ -1,0 +1,4 @@
+ip_type: apb_fabric
+name: apb_fabric5
+parameters:
+  timeout_cyc: 16

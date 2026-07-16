@@ -1,0 +1,4 @@
+ip_type: reset_sync
+name: reset_sync
+parameters:
+  stages: 3

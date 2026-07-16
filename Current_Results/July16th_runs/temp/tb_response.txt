@@ -1,0 +1,351 @@
+```verilog
+        // ── YOUR SANITY CHECKS HERE ────────────────────────────────────────
+
+        if (!skip_basic_rw && (RUN_ALL || run_T101)) begin
+            local_errors = 0;
+            $display("[SUITE] Starting T101: Basic RW - GPIO DIR...");
+            ahb_write(32'h0000_1008, 32'h12345678, 3'b001);
+            if (cpu_hresp === 2'b01) begin
+                local_errors = local_errors + 1;
+            end
+            ahb_read(32'h0000_1008, 3'b001, rd, rs);
+            if (rs === 2'b01) begin
+                local_errors = local_errors + 1;
+            end
+            if (rd !== 32'h12345678) begin
+                local_errors = local_errors + 1;
+            end
+            if (local_errors == 0) begin
+                $display("[PASS] T101");
+            end else begin
+                $display("[FAIL] T101");
+            end
+        end
+
+        if (!skip_basic_rw && (RUN_ALL || run_T102)) begin
+            local_errors = 0;
+            $display("[SUITE] Starting T102: Basic RW - GPIO ALT_LO...");
+            ahb_write(32'h0000_100C, 32'hAAAAAAAA, 3'b001);
+            if (cpu_hresp === 2'b01) begin
+                local_errors = local_errors + 1;
+            end
+            ahb_read(32'h0000_100C, 3'b001, rd, rs);
+            if (rs === 2'b01) begin
+                local_errors = local_errors + 1;
+            end
+            if (rd !== 32'hAAAAAAAA) begin
+                local_errors = local_errors + 1;
+            end
+            if (local_errors == 0) begin
+                $display("[PASS] T102");
+            end else begin
+                $display("[FAIL] T102");
+            end
+        end
+
+        if (!skip_basic_rw && (RUN_ALL || run_T103)) begin
+            local_errors = 0;
+            $display("[SUITE] Starting T103: Basic RW - TIMER CH0 LOAD...");
+            ahb_write(32'h0000_2000, 32'h0000FFFF, 3'b001);
+            if (cpu_hresp === 2'b01) begin
+                local_errors = local_errors + 1;
+            end
+            ahb_read(32'h0000_2000, 3'b001, rd, rs);
+            if (rs === 2'b01) begin
+                local_errors = local_errors + 1;
+            end
+            if (rd !== 32'h0000FFFF) begin
+                local_errors = local_errors + 1;
+            end
+            if (local_errors == 0) begin
+                $display("[PASS] T103");
+            end else begin
+                $display("[FAIL] T103");
+            end
+        end
+
+        if (!skip_basic_rw && (RUN_ALL || run_T104)) begin
+            local_errors = 0;
+            $display("[SUITE] Starting T104: Basic RW - IRQA IRQ_EN...");
+            ahb_write(32'h0000_4008, 32'h000000FF, 3'b001);
+            if (cpu_hresp === 2'b01) begin
+                local_errors = local_errors + 1;
+            end
+            ahb_read(32'h0000_4008, 3'b001, rd, rs);
+            if (rs === 2'b01) begin
+                local_errors = local_errors + 1;
+            end
+            if (rd !== 32'h000000FF) begin
+                local_errors = local_errors + 1;
+            end
+            if (local_errors == 0) begin
+                $display("[PASS] T104");
+            end else begin
+                $display("[FAIL] T104");
+            end
+        end
+
+        if (!skip_uart_tx && (RUN_ALL || run_T201)) begin
+            local_errors = 0;
+            $display("[SUITE] Starting T201: UART CTRL Write...");
+            ahb_write(32'h0000_000C, 32'h00000101, 3'b001);
+            if (cpu_hresp === 2'b01) begin
+                local_errors = local_errors + 1;
+            end
+            if (local_errors == 0) begin
+                $display("[PASS] T201");
+            end else begin
+                $display("[FAIL] T201");
+            end
+        end
+
+        if (!skip_uart_tx && (RUN_ALL || run_T202)) begin
+            local_errors = 0;
+            $display("[SUITE] Starting T202: UART TXDATA Write...");
+            ahb_write(32'h0000_0000, 32'h00000055, 3'b001);
+            if (cpu_hresp === 2'b01) begin
+                local_errors = local_errors + 1;
+            end
+            if (local_errors == 0) begin
+                $display("[PASS] T202");
+            end else begin
+                $display("[FAIL] T202");
+            end
+        end
+
+        if (!skip_uart_tx && (RUN_ALL || run_T203)) begin
+            local_errors = 0;
+            $display("[SUITE] Starting T203: UART STATUS Read...");
+            ahb_read(32'h0000_0008, 3'b001, rd, rs);
+            if (rs === 2'b01) begin
+                local_errors = local_errors + 1;
+            end
+            if (local_errors == 0) begin
+                $display("[PASS] T203");
+            end else begin
+                $display("[FAIL] T203");
+            end
+        end
+
+        if (!skip_gpio_irq && (RUN_ALL || run_T301)) begin
+            local_errors = 0;
+            $display("[SUITE] Starting T301: GPIO IRQ_EN Write...");
+            ahb_write(32'h0000_1014, 32'hFFFFFFFF, 3'b001);
+            if (cpu_hresp === 2'b01) begin
+                local_errors = local_errors + 1;
+            end
+            if (local_errors == 0) begin
+                $display("[PASS] T301");
+            end else begin
+                $display("[FAIL] T301");
+            end
+        end
+
+        if (!skip_gpio_irq && (RUN_ALL || run_T302)) begin
+            local_errors = 0;
+            $display("[SUITE] Starting T302: GPIO IRQ_EDGE Write...");
+            ahb_write(32'h0000_1018, 32'h0000FFFF, 3'b001);
+            if (cpu_hresp === 2'b01) begin
+                local_errors = local_errors + 1;
+            end
+            if (local_errors == 0) begin
+                $display("[PASS] T302");
+            end else begin
+                $display("[FAIL] T302");
+            end
+        end
+
+        if (!skip_gpio_irq && (RUN_ALL || run_T303)) begin
+            local_errors = 0;
+            $display("[SUITE] Starting T303: GPIO IRQ_POL Write...");
+            ahb_write(32'h0000_101C, 32'hFFFF0000, 3'b001);
+            if (cpu_hresp === 2'b01) begin
+                local_errors = local_errors + 1;
+            end
+            if (local_errors == 0) begin
+                $display("[PASS] T303");
+            end else begin
+                $display("[FAIL] T303");
+            end
+        end
+
+        if (!skip_timer && (RUN_ALL || run_T401)) begin
+            local_errors = 0;
+            $display("[SUITE] Starting T401: TIMER CH0 CTRL Write...");
+            ahb_write(32'h0000_2008, 32'h00000001, 3'b001);
+            if (cpu_hresp === 2'b01) begin
+                local_errors = local_errors + 1;
+            end
+            if (local_errors == 0) begin
+                $display("[PASS] T401");
+            end else begin
+                $display("[FAIL] T401");
+            end
+        end
+
+        if (!skip_timer && (RUN_ALL || run_T402)) begin
+            local_errors = 0;
+            $display("[SUITE] Starting T402: TIMER CH0 COMPARE Write...");
+            ahb_write(32'h0000_200C, 32'h00000080, 3'b001);
+            if (cpu_hresp === 2'b01) begin
+                local_errors = local_errors + 1;
+            end
+            if (local_errors == 0) begin
+                $display("[PASS] T402");
+            end else begin
+                $display("[FAIL] T402");
+            end
+        end
+
+        if (!skip_timer && (RUN_ALL || run_T403)) begin
+            local_errors = 0;
+            $display("[SUITE] Starting T403: TIMER CH1 LOAD Write...");
+            ahb_write(32'h0000_2020, 32'h00000FFF, 3'b001);
+            if (cpu_hresp === 2'b01) begin
+                local_errors = local_errors + 1;
+            end
+            if (local_errors == 0) begin
+                $display("[PASS] T403");
+            end else begin
+                $display("[FAIL] T403");
+            end
+        end
+
+        if (!skip_watchdog && (RUN_ALL || run_T501)) begin
+            local_errors = 0;
+            $display("[SUITE] Starting T501: WDT Unlock and LOAD1 Write...");
+            ahb_write(32'h0000_3014, 32'hABCD1234, 3'b001);
+            if (cpu_hresp === 2'b01) begin
+                local_errors = local_errors + 1;
+            end
+            ahb_write(32'h0000_3000, 32'h0000FFFF, 3'b001);
+            if (cpu_hresp === 2'b01) begin
+                local_errors = local_errors + 1;
+            end
+            if (local_errors == 0) begin
+                $display("[PASS] T501");
+            end else begin
+                $display("[FAIL] T501");
+            end
+        end
+
+        if (!skip_watchdog && (RUN_ALL || run_T502)) begin
+            local_errors = 0;
+            $display("[SUITE] Starting T502: WDT Unlock and REFRESH Write...");
+            ahb_write(32'h0000_3014, 32'hABCD1234, 3'b001);
+            if (cpu_hresp === 2'b01) begin
+                local_errors = local_errors + 1;
+            end
+            ahb_write(32'h0000_3018, 32'hFEEDC0DE, 3'b001);
+            if (cpu_hresp === 2'b01) begin
+                local_errors = local_errors + 1;
+            end
+            if (local_errors == 0) begin
+                $display("[PASS] T502");
+            end else begin
+                $display("[FAIL] T502");
+            end
+        end
+
+        if (!skip_privilege && (RUN_ALL || run_T601)) begin
+            local_errors = 0;
+            $display("[SUITE] Starting T601: WDT Privileged Write...");
+            ahb_write(32'h0000_3014, 32'hABCD1234, 3'b001);
+            if (cpu_hresp === 2'b01) begin
+                local_errors = local_errors + 1;
+            end
+            if (local_errors == 0) begin
+                $display("[PASS] T601");
+            end else begin
+                $display("[FAIL] T601");
+            end
+        end
+
+        if (!skip_privilege && (RUN_ALL || run_T602)) begin
+            local_errors = 0;
+            $display("[SUITE] Starting T602: WDT Unprivileged Write...");
+            ahb_write(32'h0000_3014, 32'hABCD1234, 3'b000);
+            if (cpu_hresp !== 2'b01) begin
+                local_errors = local_errors + 1;
+            end
+            if (local_errors == 0) begin
+                $display("[PASS] T602");
+            end else begin
+                $display("[FAIL] T602");
+            end
+        end
+
+        if (!skip_privilege && (RUN_ALL || run_T603)) begin
+            local_errors = 0;
+            $display("[SUITE] Starting T603: WDT Unprivileged Read...");
+            ahb_read(32'h0000_3008, 3'b000, rd, rs);
+            if (rs !== 2'b01) begin
+                local_errors = local_errors + 1;
+            end
+            if (local_errors == 0) begin
+                $display("[PASS] T603");
+            end else begin
+                $display("[FAIL] T603");
+            end
+        end
+
+        if (!skip_irq_aggregator && (RUN_ALL || run_T701)) begin
+            local_errors = 0;
+            $display("[SUITE] Starting T701: IRQA Polarity XOR Check...");
+            ahb_write(32'h0000_4010, 32'h00000000, 3'b001);
+            if (cpu_hresp === 2'b01) begin
+                local_errors = local_errors + 1;
+            end
+            if (local_errors == 0) begin
+                $display("[PASS] T701");
+            end else begin
+                $display("[FAIL] T701");
+            end
+        end
+
+        if (!skip_irq_aggregator && (RUN_ALL || run_T702)) begin
+            local_errors = 0;
+            $display("[SUITE] Starting T702: IRQA Soft IRQ Trigger...");
+            ahb_write(32'h0000_401C, 32'h00000080, 3'b001);
+            if (cpu_hresp === 2'b01) begin
+                local_errors = local_errors + 1;
+            end
+            if (local_errors == 0) begin
+                $display("[PASS] T702");
+            end else begin
+                $display("[FAIL] T702");
+            end
+        end
+
+        if (!skip_reset_sync && (RUN_ALL || run_T801)) begin
+            local_errors = 0;
+            $display("[SUITE] Starting T801: WDT CTRL Reset Enable...");
+            ahb_write(32'h0000_3014, 32'hABCD1234, 3'b001);
+            if (cpu_hresp === 2'b01) begin
+                local_errors = local_errors + 1;
+            end
+            ahb_write(32'h0000_300C, 32'h00000004, 3'b001);
+            if (cpu_hresp === 2'b01) begin
+                local_errors = local_errors + 1;
+            end
+            if (local_errors == 0) begin
+                $display("[PASS] T801");
+            end else begin
+                $display("[FAIL] T801");
+            end
+        end
+
+        if (!skip_reset_sync && (RUN_ALL || run_T802)) begin
+            local_errors = 0;
+            $display("[SUITE] Starting T802: WDT STATUS Read...");
+            ahb_read(32'h0000_3010, 3'b001, rd, rs);
+            if (rs === 2'b01) begin
+                local_errors = local_errors + 1;
+            end
+            if (local_errors == 0) begin
+                $display("[PASS] T802");
+            end else begin
+                $display("[FAIL] T802");
+            end
+        end
+```

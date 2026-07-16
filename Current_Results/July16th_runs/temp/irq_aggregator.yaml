@@ -1,0 +1,3 @@
+ip_type: irq_aggregator
+name: irq_aggregator
+parameters: {}
