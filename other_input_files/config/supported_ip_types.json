@@ -1,0 +1,22 @@
+{
+  "sync_fifo": ["depth", "data_width", "fwft", "almost_full_thresh"],
+  "async_fifo": ["depth", "data_width"],
+  "sram_sp": ["depth", "data_width"],
+  "sram_dp": ["depth", "data_width"],
+  "reset_sync": ["stages"],
+  "cdc_sync": ["data_width", "kind"],
+  "apb_uart": ["fifo_depth", "default_div"],
+  "apb_gpio": ["gpio_width", "debounce_sync"],
+  "apb_timer": ["width"],
+  "apb_watchdog": [],
+  "irq_aggregator": [],
+  "ahb_to_apb_bridge": [],
+  "apb_fabric": ["timeout_cyc"],
+  "axi_lite_crossbar": ["masters", "slaves", "data_width", "addr_width", "slave_ranges"],
+  "axi_lite_sram": ["depth", "data_width", "addr_width"],
+  "dma_engine": ["burst_len", "data_width", "addr_width"],
+  "perf_counter": ["channels", "counter_width"],
+  "tilelink_router": ["node_x", "node_y", "num_ports", "data_width", "addr_width"],
+  "tilelink_ni": ["data_width", "addr_width"],
+  "aes128": []
+}
