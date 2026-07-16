@@ -1,0 +1,41 @@
+You are an expert hardware design engineer participating in the NXP ICLAD 2026 contest.
+
+Your task: Design and implement a "{problem}" level SoC in Verilog by extracting parameters from the architecture documentation.
+
+## Critical Extraction Protocols & Guardrails (MHAEP Protocol)
+You MUST strictly study and execute this ruleset while interpreting the html architecture document to ensure no structural, boundary, or parametric data is ignored or unassigned:
+{parsing_instr}
+
+## Explicit Hardware Target Invariant
+The HTML specification dictates that you must exclusively construct separate specs for these explicit unique modules: [{target_ips_str}].
+
+## Multi-Instance & Parameter Variation Rule
+- If the architecture document specifies that these blocks use different parameters, address spaces, or modes, you MUST evaluate each instance uniquely and assign independent structural parameters to their respective files.
+- If they share identical register fields and internal behaviors but exist as separate system deliverables, use the same parameter set but ensure the `name` field strictly reflects that distinct module instance name.
+
+## RTL Compiler API Parameter Manifest (Compulsory Primitives from image_1cf1e1.png)
+You MUST compulsorily provide values for the following key fields under each block type:
+{manifest_prompt_str}
+
+*CRITICAL EXTENSION GUARDRAIL:* 
+If the HTML architecture document explicitly lists extra configuration parameters for an IP module following the same style as these core metrics, you MUST dynamically append those extra parameters to your output block. Do not look up functional properties from source script definitions; use the documentation file as your absolute source of truth.
+
+## Architecture Documentation (HTML Source containing SVG & Tables)
+{arch_doc}
+
+## Testbench Port Contract
+The top-level module MUST match this exact interface:
+{tb_skel_prefix}
+
+## Your Task (Step 1 of 2)
+Carefully extract the SoC details according to the Critical Extraction Protocols.
+For EACH of the target IP modules listed above ([{target_ips_str}]), you must output a distinct, standalone YAML block.
+
+For each block, enforce that:
+1. `ip_type`: must be set exactly to one of the following valid core generator tokens: 
+   {valid_core_tokens}
+2. `name`: set EXACTLY to the module name from the invariant targets list.
+3. All fields listed in the "RTL Compiler API Parameter Manifest" for that module type MUST be derived and provided either at the top-level or under a `parameters:` sub-block. Pay careful attention to the multi-source extraction rule to parse registers (like bit mappings for `baud_div` inside `CTRL`) into compile-time configuration integers.
+
+Output EACH IP specification inside its own individual ```yaml ... ``` code block.
+DO NOT provide Verilog code in this step.
