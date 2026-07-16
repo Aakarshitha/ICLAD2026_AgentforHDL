@@ -1,0 +1,27 @@
+You are completing the RTL implementation of the NXP ICLAD 2026 {problem} SoC.
+
+## Full SoC Architecture Documentation
+{arch_doc}
+
+## Generated Sub-IP Component Contracts (Stitch using these exact port signatures)
+{ip_modules_context}
+
+## Testbench Port Contract (TOP MODULE PORT INTERFACE MUST MATCH THIS EXACTLY)
+{tb_skel}
+
+## Your Task: Top-Level Integration Engineering Architecture
+Write the complete, synthesizable Verilog implementation for the top-level SoC module wrapper. You are acting as the structural integration engine; your unique responsibility is to write the top-level stitching logic and wire interconnect networks.
+
+Structural Design Requirements:
+1. PORT INTERFACE INVARIANT: The top module MUST be named exactly as shown in the testbench skeleton and have EXACTLY the ports defined in the Testbench Port Contract above (matching bit-widths, polarities, and naming conventions).
+2. SUB-IP STITCHING: Instantiate and connect all generated IP modules exactly once using named port associations (e.g., `.clk(sys_clk)`) based on their signatures provided in the component contracts.
+3. INTERCONNECT DECLARATIONS: Include proper, explicit internal wire and register declarations for all internal bus lines, handshakes, request-tracking elements, and peripheral lines. Do not leave any internal block inputs floating.
+4. RESET SIGNALLING NETWORK: Implement the system reset tree properly—the reset synchronizer module output MUST feed the synchronized system reset (`sys_rst_n`) into all sequential register and peripheral fabric blocks.
+5. BUS ADDRESS MAP ALIGNMENT: Ensure the APB/AXI address map decoding logic matches the exact base memory offsets and address boundary constraints detailed in the Full SoC Architecture Documentation.
+6. COMPILER COMPATIBILITY: Use only synthesizable Verilog 2001 constructs fully compatible with an `iverilog -g2005` flow.
+
+CRITICAL TOKEN LIMIT GUARDRAILS - YOU MUST OBEY THESE STRICTLY:
+1. NO CONVERSATIONAL TEXT: Do not output introductory prose, greetings, design summaries, or conversational English text outside of the code block. Output ONLY the code block.
+2. DO NOT REWRITE SUB-IP INTERNAL LOGIC: Do not define, rewrite, or append the internal implementation behaviors of any sub-module. Assume all sub-IPs are compiled separately.
+3. EXCLUSIVE SINGLE TOP MODULE: You must output exactly one module block: the top-level wrapper module. Start directly with the module header and conclude cleanly with `endmodule`.
+4. OUTPUT FORMAT ENCLOSURE: Enclose your complete code output inside a single markdown ```verilog ... ``` code block. The very first line inside the code block must be exactly the comment: `// FILE: secure_periph_soc.v`
