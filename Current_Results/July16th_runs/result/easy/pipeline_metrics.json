@@ -1,0 +1,37 @@
+{
+  "execution_durations_seconds": {
+    "yaml_gen_agent": 21.152317134998157,
+    "rtl_generation": 0.4535779620055109,
+    "top_stitch_agent": 39.95366302099137,
+    "verilog_saving": 0.0006377399986376986
+  },
+  "token_usage": {
+    "yaml_gen_agent": {
+      "prompt_tokens": 94543,
+      "output_tokens": 270,
+      "total_tokens": 96688,
+      "api_call_status": "SUCCESS"
+    },
+    "top_stitch_agent": {
+      "prompt_tokens": 6178,
+      "output_tokens": 3628,
+      "total_tokens": 12031,
+      "api_call_status": "SUCCESS"
+    },
+    "tb_gen_agent": {
+      "prompt_tokens": 0,
+      "output_tokens": 0,
+      "total_tokens": 0,
+      "api_call_status": "DIAGNOSTIC_FILE_MISSING"
+    }
+  },
+  "aggregated_totals": {
+    "total_prompt_tokens": 100721,
+    "total_output_tokens": 3898,
+    "total_overall_tokens": 108719
+  },
+  "file_statistics": {
+    "yaml_specs_generated": 9,
+    "verilog_rtl_files_saved": 9
+  }
+}
