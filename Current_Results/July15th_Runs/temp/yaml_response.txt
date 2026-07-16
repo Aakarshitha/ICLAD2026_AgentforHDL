@@ -1,0 +1,55 @@
+```yaml
+ip_type: reset_sync
+name: reset_sync
+parameters:
+  stages: 3
+```
+
+```yaml
+ip_type: ahb_to_apb_bridge
+name: ahb_to_apb_bridge
+parameters: {}
+```
+
+```yaml
+ip_type: apb_fabric
+name: apb_fabric5
+parameters:
+  timeout_cyc: 16
+```
+
+```yaml
+ip_type: apb_uart
+name: apb_uart
+parameters:
+  fifo_depth: 16
+  default_div: 0
+```
+
+```yaml
+ip_type: apb_gpio
+name: apb_gpio
+parameters:
+  gpio_width: 32
+  debounce_sync: 3
+```
+
+```yaml
+ip_type: apb_timer
+name: apb_timer
+parameters:
+  width: 32
+  channels: 2
+```
+
+```yaml
+ip_type: apb_watchdog
+name: apb_watchdog
+parameters: {}
+```
+
+```yaml
+ip_type: irq_aggregator
+name: irq_aggregator
+parameters: {}
+```

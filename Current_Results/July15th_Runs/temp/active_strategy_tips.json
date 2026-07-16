@@ -1,0 +1,6 @@
+{
+  "ahb_apb_bridge": "Focus on getting the AHB-to-APB bridge timing right (SETUP then ENABLE phase).",
+  "apb_fabric": "The APB fabric must correctly decode 4KB address windows.",
+  "watchdog": "Watchdog requires the 2-step unlock sequence (magic key = 0xABCD1234).",
+  "irq_aggregator": "IRQ aggregator polarity: irq_in = irq_src XOR ~polarity."
+}

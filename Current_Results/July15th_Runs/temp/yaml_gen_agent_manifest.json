@@ -1,0 +1,23 @@
+{
+  "yaml_blocks": [
+    "ip_type: reset_sync\nname: reset_sync\nparameters:\n  stages: 3\n",
+    "ip_type: ahb_to_apb_bridge\nname: ahb_to_apb_bridge\nparameters: {}\n",
+    "ip_type: apb_fabric\nname: apb_fabric5\nparameters:\n  timeout_cyc: 16\n",
+    "ip_type: apb_uart\nname: apb_uart\nparameters:\n  fifo_depth: 16\n  default_div: 0\n",
+    "ip_type: apb_gpio\nname: apb_gpio\nparameters:\n  gpio_width: 32\n  debounce_sync: 3\n",
+    "ip_type: apb_timer\nname: apb_timer\nparameters:\n  width: 32\n  channels: 2\n",
+    "ip_type: apb_watchdog\nname: apb_watchdog\nparameters: {}\n",
+    "ip_type: irq_aggregator\nname: irq_aggregator\nparameters: {}\n"
+  ],
+  "saved_yaml_files": [
+    "/home/aakarshitha/nxp_workspace/temp/Jul15_R9/easy/reset_sync.yaml",
+    "/home/aakarshitha/nxp_workspace/temp/Jul15_R9/easy/ahb_to_apb_bridge.yaml",
+    "/home/aakarshitha/nxp_workspace/temp/Jul15_R9/easy/apb_fabric5.yaml",
+    "/home/aakarshitha/nxp_workspace/temp/Jul15_R9/easy/apb_uart.yaml",
+    "/home/aakarshitha/nxp_workspace/temp/Jul15_R9/easy/apb_gpio.yaml",
+    "/home/aakarshitha/nxp_workspace/temp/Jul15_R9/easy/apb_timer.yaml",
+    "/home/aakarshitha/nxp_workspace/temp/Jul15_R9/easy/apb_watchdog.yaml",
+    "/home/aakarshitha/nxp_workspace/temp/Jul15_R9/easy/irq_aggregator.yaml"
+  ],
+  "top_module_name": "secure_periph_soc"
+}
